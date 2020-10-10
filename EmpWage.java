@@ -6,26 +6,29 @@ public class EmpWage {
         final int FullTime=1;
         final int PartTime=2;
         final int ratePerHour= 20 ; 
-        int empCheck= (int) Math.floor(Math.random() * 10)%3;
         int salary;
+        int TotalSalary=0;
         int EmpHr;
-        switch( empCheck ) 
+        int workingDayPerMonth=20;
+        int day=1;
+        while (day <= workingDayPerMonth )
         {
-        case FullTime :
-        	EmpHr=8;
+        	int empCheck= (int) Math.floor(Math.random() * 10)%3;
+        	switch( empCheck ) 
+        	{
+        	case FullTime :
+        		EmpHr=8;
+        		break;
+        	case PartTime :
+        		EmpHr=4;
+        		break;
+        	default :
+        		EmpHr=0;
+        	}
         	salary= EmpHr * ratePerHour ;
-            System.out.println("Full Time Salary is : " + salary);
-            break;
-        case PartTime :
-        	EmpHr=4;
-        	salary= EmpHr * ratePerHour ;
-            System.out.println("Part Time Salary is : " + salary);
-            break;
-        default :
-        	EmpHr=0;
-        	salary= EmpHr * ratePerHour ;
-        	System.out.println("Employee is absent , So salary : " + salary);
-        }
-	}
-
+        	TotalSalary+=salary;
+        	day++;
+      }
+     System.out.println("Total Salary for a month is : " + TotalSalary );
+  }
 }
