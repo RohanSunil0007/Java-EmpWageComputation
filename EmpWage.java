@@ -1,42 +1,49 @@
 //Welcome to Employee Wage Computation
 public class EmpWage {
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to Employee Wage Computation");
-		//CONSTANTS
-        final int FullTime=1;
-        final int PartTime=2;
-        final int ratePerHour= 20 ; 
-        int workingDayPerMonth=20;
-        int MaxHrsPerMonth=100;
-        //VARIABLES
-        int salary;
-        int EmpHr;
-        int day=1;
-        int totalEmpHrs=0;
-        int totalEmpDays=0;
-        while (totalEmpHrs < MaxHrsPerMonth && totalEmpDays < workingDayPerMonth  )
+//CONSTANTS
+public static final int FullTime=1;
+public static final int PartTime=2;
+public static final int ratePerHours= 20 ;
+public static final int MaxworkingDays=20;
+public static final int MaxHrsPerMonth=100;
+
+
+     public static int EmployeeWageComputation() {
+      //VARIABLES
+       int salary=0;
+       int EmpHours=0;
+       int totalEmpHours=0;
+       int totalEmpDays=0;
+
+        while (totalEmpHours < MaxHrsPerMonth && totalEmpDays < MaxworkingDays  )
         {
         	totalEmpDays++;
         	int empCheck= (int) Math.floor(Math.random() * 10)%3;
+
         	//Attendance Check
-        	switch( empCheck ) 
+        	switch( empCheck )
         	{
         	case FullTime :
-        		EmpHr=8;
+        		EmpHours=8;
         		break;
         	case PartTime :
-        		EmpHr=4;
+        		EmpHours=4;
         		break;
         	default :
-        		EmpHr=0;
+        		EmpHours=0;
+        		break;
         	}
         	//daily wage calculations
-        	salary= EmpHr * ratePerHour ;
-        	totalEmpHrs += EmpHr;
-        	System.out.println("Day " +totalEmpDays + " Employee work hours " +EmpHr +" and daily wage is " +salary ); 
-        	day++;
+        	salary= EmpHours * ratePerHours ;
+        	totalEmpHours += EmpHours;
+        	System.out.println("Day " +totalEmpDays + " Employee work hours " +EmpHours +" and daily wage is " +salary ); 
+      	}
+     		System.out.println("Total Salary for a month is : " +totalEmpHours * ratePerHours );
+     		return totalEmpHours * ratePerHours;
+     }
+     public static void main(String[] args) {
+    	System.out.println("Welcome to Employee Wage Computation");
+    	EmployeeWageComputation();
       }
-     System.out.println("Total Salary for a month is : " +totalEmpHrs * ratePerHour );
-  }
 }
