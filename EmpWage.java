@@ -1,10 +1,25 @@
 //Welcome to Employee Wage Computation
 public class EmpWage {
+
    //CONSTANTS
    public static final int FullTime=1;
    public static final int PartTime=2;
 
-    void EmployeeWageComputation(String company , int ratePerHours , int MaxworkingDays , int MaxHrsPerMonth) {
+   public final String company;
+   public final int ratePerHours;
+   public final int MaxworkingDays;
+   public final int MaxHrsPerMonth;
+   int totalSalary;
+
+   //CONSTRUCTOR
+   public EmpWage(String company , int ratePerHours , int MaxworkingDays , int MaxHrsPerMonth) {
+	   this.company=company;
+	   this.ratePerHours = ratePerHours;
+	   this.MaxworkingDays = MaxworkingDays;
+	   this.MaxHrsPerMonth = MaxHrsPerMonth;
+   }
+   //Method
+    void EmployeeWageComputation() {
         System.out.println(company + " Wage Computation ");
     	//VARIABLES
         int salary=0;
@@ -16,6 +31,7 @@ public class EmpWage {
         {
         	totalEmpDays++;
         	int empCheck= (int) Math.floor(Math.random() * 10)%3;
+
         	//Attendance Check
         	switch( empCheck ) 
         	{
@@ -34,18 +50,19 @@ public class EmpWage {
         	totalEmpHours += EmpHours;
         	System.out.println("Day " +totalEmpDays + " Employee work hours " +EmpHours +" and daily wage is " +salary ); 
       }
-     System.out.println("Total Salary for a month is : " +totalEmpHours * ratePerHours );
-
+        int totalSalary= totalEmpHours * ratePerHours; 
+     System.out.println("Total Salary for a month is : " +totalSalary );
     }
-    public static void main(String[] args) {
-    	System.out.println("Welcome to Employee Wage Computation");
 
-    	EmpWage company1=new EmpWage();
-    	company1.EmployeeWageComputation("Amazon", 20, 20, 100);
+    public static void main(String[] args) {
+    	System.out.println("Welcome to Employee Wage Computation !");
+    	System.out.println(" ");
+    	EmpWage company1=new EmpWage("Amazon", 20, 20, 100);
+    	company1.EmployeeWageComputation();
 
     	System.out.println(" ");
 
-   	EmpWage company2=new EmpWage();
-    	company2.EmployeeWageComputation("Walmart", 20,30, 100);
+    	EmpWage company2=new EmpWage("Walmart", 20,30, 100);
+    	company2.EmployeeWageComputation();
     }
 }
