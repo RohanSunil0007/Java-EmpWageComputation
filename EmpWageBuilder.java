@@ -1,5 +1,12 @@
 //Welcome to Employee Wage Computation
 
+//Interface
+interface InterfaceEmployeeWageComputation {
+	public void addCompanyEmpWage(String company,int ratePerHours,int MaxworkingDays,int MaxHrsPerMonth );
+	public void employeeWageComputation();
+	
+}
+
 class CompanyEmpWage {
 
 	//Constants
@@ -25,7 +32,8 @@ class CompanyEmpWage {
 			return "Total employee wage for " +company+ " is " +totalSalary;
 		}
 }
- class EmpWageBuilder {
+
+public class EmpWageBuilder implements InterfaceEmployeeWageComputation {
 
 	//Constants
 			public static final int FULL_TIME = 1;
@@ -39,12 +47,12 @@ class CompanyEmpWage {
 				companyEmpWageArray = new CompanyEmpWage[5];
 			}
 			
-			private void addCompanyEmpWage(String company,int ratePerHours,int MaxworkingDays,int MaxHrsPerMonth ) {
+			public void addCompanyEmpWage(String company,int ratePerHours,int MaxworkingDays,int MaxHrsPerMonth ) {
 				companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, ratePerHours, MaxworkingDays, MaxHrsPerMonth );
 				numOfCompany++;
 			}
 			
-			 void employeeWageComputation() {
+			 public void employeeWageComputation() {
 				for (int i=0; i<numOfCompany; i++) {
 					companyEmpWageArray[i].totalSalary(employeeWageComputation(companyEmpWageArray[i]));
 					System.out.println(companyEmpWageArray[i]);
