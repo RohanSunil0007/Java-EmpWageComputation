@@ -8,7 +8,7 @@ import java.util.Map;
 interface InterfaceEmployeeWageComputation {
 	public void addCompanyEmpWage(String company,int ratePerHours,int MaxworkingDays,int MaxHrsPerMonth );
 	public void employeeWageComputation();
-	
+	public int getTotalSalary(String company);
 }
 class CompanyEmpWage {
 
@@ -27,7 +27,8 @@ class CompanyEmpWage {
 			this.MaxHrsPerMonth = MaxHrsPerMonth;
 		}
 		
-		public void totalSalary(int totalSalary) {
+		//set
+		public void setTotalSalary(int totalSalary) {
 			this.totalSalary = totalSalary;
 		}
 		public String toString() {
@@ -35,6 +36,7 @@ class CompanyEmpWage {
 			return "Total employee wage for " +company+ " is " +totalSalary;
 		}
 }
+
 public class EmpWageBuilder implements InterfaceEmployeeWageComputation {
 
 	//Constants
@@ -63,10 +65,15 @@ public class EmpWageBuilder implements InterfaceEmployeeWageComputation {
 			 public void employeeWageComputation() {
 				for (int i=0; i< companyEmpWageList.size() ; i++) {
 					CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
-					companyEmpWage.totalSalary(employeeWageComputation(companyEmpWage) );
+					companyEmpWage.setTotalSalary(employeeWageComputation(companyEmpWage) );
 					
 					System.out.println(companyEmpWage);
 				}
+			}
+			 
+			 //getter
+			 public int getTotalSalary(String company) {
+					return companyEmpWageMap.get(company).totalSalary;			
 			}
 			
 			
@@ -113,9 +120,11 @@ public class EmpWageBuilder implements InterfaceEmployeeWageComputation {
 				InterfaceEmployeeWageComputation empWageBuilder = new EmpWageBuilder();
 				empWageBuilder.addCompanyEmpWage("Amazon", 20, 20, 100);
 				empWageBuilder.addCompanyEmpWage("Google", 10, 20, 100);
-				
+				System.out.println("  ");
+
 				empWageBuilder.employeeWageComputation();
-			
+				System.out.println("  ");
+			    System.out.println("Total employee wage for Amazon" +empWageBuilder.getTotalSalary("Amazon"));
 			}	
 }
 
