@@ -1,12 +1,39 @@
 //Welcome to Employee Wage Computation
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 //Interface
 interface InterfaceEmployeeWageComputation {
 	public void addCompanyEmpWage(String company,int ratePerHours,int MaxworkingDays,int MaxHrsPerMonth );
 	public void employeeWageComputation();
 	
+}
+class CompanyEmpWage {
+
+	//Constants
+	public final String company;
+	public final int ratePerHours;
+	public final int MaxworkingDays;
+	public final int MaxHrsPerMonth;
+	int totalSalary;
+		
+		//Constructor
+		public CompanyEmpWage(String company,int ratePerHours,int MaxworkingDays,int MaxHrsPerMonth ) {
+			this.company = company;
+			this.ratePerHours = ratePerHours;
+			this.MaxworkingDays = MaxworkingDays;
+			this.MaxHrsPerMonth = MaxHrsPerMonth;
+		}
+		
+		public void totalSalary(int totalSalary) {
+			this.totalSalary = totalSalary;
+		}
+		public String toString() {
+			System.out.println("  ");
+			return "Total employee wage for " +company+ " is " +totalSalary;
+		}
 }
 public class EmpWageBuilder implements InterfaceEmployeeWageComputation {
 
@@ -18,19 +45,26 @@ public class EmpWageBuilder implements InterfaceEmployeeWageComputation {
 			//ArrayList
 		     ArrayList<CompanyEmpWage> companyEmpWageList;
 			
-			public EmpWageBuilder() {
+		     //HashMap
+		    Map<String,CompanyEmpWage> companyEmpWageMap;
+			
+		    
+		    public EmpWageBuilder() {
 				companyEmpWageList = new ArrayList<>();
+				companyEmpWageMap = new HashMap<>();
 			}
 			
 			public void addCompanyEmpWage(String company,int ratePerHours,int MaxworkingDays,int MaxHrsPerMonth ) {
 				CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, ratePerHours, MaxworkingDays, MaxHrsPerMonth );
 				companyEmpWageList.add(companyEmpWage);
+				companyEmpWageMap.put(company,companyEmpWage);
 			}
 			
 			 public void employeeWageComputation() {
 				for (int i=0; i< companyEmpWageList.size() ; i++) {
 					CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
 					companyEmpWage.totalSalary(employeeWageComputation(companyEmpWage) );
+					
 					System.out.println(companyEmpWage);
 				}
 			}
@@ -84,3 +118,4 @@ public class EmpWageBuilder implements InterfaceEmployeeWageComputation {
 			
 			}	
 }
+
